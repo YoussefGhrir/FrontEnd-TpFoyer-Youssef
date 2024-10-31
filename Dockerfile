@@ -1,22 +1,19 @@
 # Étape 1 : Construction de l'application Angular
 FROM node:16-alpine AS build
 
-# Installer Angular CLI
-RUN npm install -g @angular/cli@15.2.6
-
 WORKDIR /usr/src/app
 
 # Copier les fichiers de dépendances
 COPY package.json package-lock.json ./
 
-# Installer les dépendances
-RUN npm install
+# Installer les dépendances, y compris les devDependencies
+RUN npm install --include=dev
 
 # Copier le reste des fichiers de l'application
 COPY . .
 
-# Construire l'application en mode production
-RUN ng build --configuration production
+# Construire l'application en mode production avec des logs détaillés
+RUN npm run build -- --configuration production --verbose
 
 # Étape 2 : Servir l'application avec Nginx
 FROM nginx:1.23-alpine
@@ -33,5 +30,5 @@ COPY --from=build /usr/src/app/dist/tpfoyer-front /usr/share/nginx/html
 # Exposer le port 80
 EXPOSE 80
 
-# Démarrer 
+# Démarrer Nginx
 CMD ["nginx", "-g", "daemon off;"]

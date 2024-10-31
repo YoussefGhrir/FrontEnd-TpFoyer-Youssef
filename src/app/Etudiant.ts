@@ -1,9 +1,9 @@
-export class contrat {
-    idContrat: any;  
-    dateDebutContrat: any;
-    dateFinContrat: any;  
-    archived: any;
-    montantContrat!: any;
-    specialite!: any;
+export class etudiant {
+    idEtudiant: any;  
+    nomEtudiant: any;
+    prenomEtudiant: any;  
+    cinEtudiant: any;
+    dateNaissance!: any;
+    
    
 }
