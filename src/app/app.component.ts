@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NomDuServiceService } from './nom-du-service.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { contrat } from './Contrat';
+import { etudiant } from './Etudiant';
 
 @Component({
   selector: 'app-root',
@@ -9,49 +9,44 @@ import { contrat } from './Contrat';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'kaddemFront';
+  title = 'tpfoyerFront';
 
   form: boolean = false;
   closeResult!: string;
-  listContrats: any;
-  contrat!:any;
+  listetudiants: any;
+  etudiant!:any;
 
-  constructor(private contraService: NomDuServiceService, private modalService: NgbModal ) { }
+  constructor(private etudiantService: NomDuServiceService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
-    this.getAllContrat();
-    console.log(this.listContrats)
-    this.contrat={
-      idContrat : null,
-      dateDebutContrat: null,
-      dateFinContrat:null,
-      specialite : null,
-      archived :null,
-      montantContrat:null
+    this.getAlletudiant();
+    this.etudiant={
+      
+      idEtudiant: null,  
+      nomEtudiant: null,
+      prenomEtudiant: null,  
+      cinEtudiant: null,
+      dateNaissance: null,
     }
   }
 
-  getAllContrat(){
-    return this.contraService.getAllContrat().subscribe(res=>{
-      this.listContrats = res;
+  getAlletudiant(){
+    return this.etudiantService.getAlletudiant().subscribe(res=>{
+      this.listetudiants = res;
     });
   }
-  addContrat(c: any) {
-    this.contraService.addContrat(c).subscribe(() => {
-      this.getAllContrat();
+  addetudiant(c: any) {
+    this.etudiantService.addetudiant(c).subscribe(() => {
+      this.getAlletudiant();
       this.form = false;
     });
   }
 
-  editContrat(contrat: contrat) {
-    this.contraService.editContrat(contrat).subscribe();
-  }
-
   open(content: any, action: any) {
     if (action != null)
-      this.contrat = action
+      this.etudiant = action
     else
-      this.contrat = new contrat();
+      this.etudiant = new etudiant();
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kaddemFront": {
+    "tpfoyerFront": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kaddem-front",
+            "outputPath": "dist/tpfoyer-front",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "kaddemFront:build:production"
+              "browserTarget": "tpfoyerFront:build:production"
             },
             "development": {
-              "browserTarget": "kaddemFront:build:development"
+              "browserTarget": "tpfoyerFront:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kaddemFront:build"
+            "browserTarget": "tpfoyerFront:build"
           }
         },
         "test": {
