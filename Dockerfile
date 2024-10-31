@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN ng build --configuration production
 EXPOSE 80
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
