@@ -3,8 +3,7 @@ FROM  node:16-alpine AS build
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm cache clean --force
-RUN npm install --legacy-peer-deps
-COPY . .
+RUN npm install --force
 RUN npm run build 
 EXPOSE 80
 ### STAGE 2: Run ###
