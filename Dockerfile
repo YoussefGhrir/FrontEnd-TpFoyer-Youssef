@@ -1,7 +1,7 @@
 ### STAGE 1: Build ###
 FROM node:18.20-alpine AS build
 WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm cache clean --force
 RUN npm install --legacy-peer-deps
 RUN npm install
