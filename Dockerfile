@@ -2,6 +2,8 @@
 FROM node:18.20-alpine AS build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
+RUN npm cache clean --force
+RUN npm install --legacy-peer-deps
 RUN npm install
 COPY . .
 RUN npm run build 
