@@ -9,7 +9,7 @@ import { etudiant } from './Etudiant';
 export class NomDuServiceService {
 
  
-  readonly API_URL = 'http://192.168.1.171:8082/tpFoyer17/api/etudiants';
+  readonly API_URL = 'http://192.168.1.200:8082/tpFoyer17/api/etudiants';
 
   constructor(private httpClient: HttpClient) { }
   getAlletudiant() {
