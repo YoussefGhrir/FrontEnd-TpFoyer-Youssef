@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:18.20-alpine AS build
+FROM  node:16-alpine AS build
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm cache clean --force
