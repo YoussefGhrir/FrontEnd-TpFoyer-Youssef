@@ -9,14 +9,14 @@ import { etudiant } from './Etudiant';
 export class NomDuServiceService {
 
  
-  readonly API_URL = 'http://192.168.1.200:8082/tpFoyer17/api/etudiant';
+  readonly API_URL = 'http://192.168.1.200:8082/tpFoyer17/api/etudiants';
 
   constructor(private httpClient: HttpClient) { }
   getAlletudiant() {
     return this.httpClient.get(`${this.API_URL}/retrieveAllEtudiants`)
   }
   addetudiant(etudiant : any) {
-    return this.httpClient.post(`${this.API_URL}/addEtudiants`, etudiant)
+    return this.httpClient.post(`${this.API_URL}/addEtudiant`, etudiant)
   }
   
 }
