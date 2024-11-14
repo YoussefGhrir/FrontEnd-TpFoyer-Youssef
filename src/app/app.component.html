@@ -1,62 +1,69 @@
-<div class="container mt-4">
-  <h3 class="text-primary mb-4">Liste des Etudiants</h3>
-  <button class="btn btn-primary mb-3" (click)="open(mymodal1, null)">Ajouter un nouvel étudiant</button>
-  <div class="table-responsive">
-    <table class="table table-hover table-bordered">
-      <thead class="table-primary">
-        <tr>
-          <th>ID Étudiant</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>CIN</th>
-          <th>Date de Naissance</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of listetudiants">
-          <td>{{ p.idEtudiant }}</td>
-          <td>{{ p.nomEtudiant }}</td>
-          <td>{{ p.prenomEtudiant }}</td>
-          <td>{{ p.cinEtudiant }}</td>
-          <td>{{ p.dateNaissance }}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="w-75">
+    <h3 class="text-primary mb-4 text-center">Liste des Étudiants</h3>
+    <button class="btn btn-primary mb-3" (click)="open(mymodal1, null)">Ajouter un nouvel étudiant</button>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="table-primary">
+          <tr>
+            <th>ID Étudiant</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>CIN</th>
+            <th>Date de Naissance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of listetudiants">
+            <td>{{ p.idEtudiant }}</td>
+            <td>{{ p.nomEtudiant }}</td>
+            <td>{{ p.prenomEtudiant }}</td>
+            <td>{{ p.cinEtudiant }}</td>
+            <td>{{ p.dateNaissance | date: 'yyyy-MM-dd' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
+
 <ng-template #mymodal1 let-modal1>
-  <div class="modal-header">
-    <h4 class="modal-title text-primary" id="modal-basic-title">Ajouter un nouvel étudiant</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="mb-3">
-        <label for="etudiant-nomEtudiant" class="form-label">Nom de l'étudiant</label>
-        <input id="etudiant-nomEtudiant" class="form-control" type="text" placeholder="Nom d'étudiant"
-               [(ngModel)]="etudiant.nomEtudiant" [ngModelOptions]="{ standalone: true }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-primary" id="modal-basic-title">Ajouter un nouvel étudiant</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
       </div>
-      <div class="mb-3">
-        <label for="etudiant-prenomEtudiant" class="form-label">Prénom de l'étudiant</label>
-        <input id="etudiant-prenomEtudiant" class="form-control" type="text" placeholder="Prénom d'étudiant"
-               [(ngModel)]="etudiant.prenomEtudiant" [ngModelOptions]="{ standalone: true }">
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="etudiant-nomEtudiant" class="form-label">Nom de l'étudiant</label>
+            <input id="etudiant-nomEtudiant" class="form-control" type="text" placeholder="Nom d'étudiant"
+                   [(ngModel)]="etudiant.nomEtudiant" [ngModelOptions]="{ standalone: true }">
+          </div>
+          <div class="mb-3">
+            <label for="etudiant-prenomEtudiant" class="form-label">Prénom de l'étudiant</label>
+            <input id="etudiant-prenomEtudiant" class="form-control" type="text" placeholder="Prénom d'étudiant"
+                   [(ngModel)]="etudiant.prenomEtudiant" [ngModelOptions]="{ standalone: true }">
+          </div>
+          <div class="mb-3">
+            <label for="etudiant-cinEtudiant" class="form-label">CIN de l'étudiant</label>
+            <input id="etudiant-cinEtudiant" class="form-control" type="number" placeholder="CIN d'étudiant"
+                   [(ngModel)]="etudiant.cinEtudiant" [ngModelOptions]="{ standalone: true }">
+          </div>
+          <div class="mb-3">
+            <label for="etudiant-dateNaissance" class="form-label">Date de Naissance</label>
+            <input id="etudiant-dateNaissance" class="form-control" type="date" 
+                   [(ngModel)]="etudiant.dateNaissance" [ngModelOptions]="{ standalone: true }">
+          </div>
+        </form>
       </div>
-      <div class="mb-3">
-        <label for="etudiant-cinEtudiant" class="form-label">CIN de l'étudiant</label>
-        <input id="etudiant-cinEtudiant" class="form-control" type="number" placeholder="CIN d'étudiant"
-               [(ngModel)]="etudiant.cinEtudiant" [ngModelOptions]="{ standalone: true }">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addetudiant(etudiant); modal1.close('Save click')">
+          Ajouter l'étudiant
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="modal1.dismiss('Cancel click')">Annuler</button>
       </div>
-      <div class="mb-3">
-        <label for="etudiant-dateNaissance" class="form-label">Date de Naissance</label>
-        <input id="etudiant-dateNaissance" class="form-control" type="date" 
-               [(ngModel)]="etudiant.dateNaissance" [ngModelOptions]="{ standalone: true }">
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="addetudiant(etudiant); modal1.close('Save click')">
-      Ajouter l'étudiant
-    </button>
-    <button type="button" class="btn btn-secondary" (click)="modal1.dismiss('Cancel click')">Annuler</button>
+    </div>
   </div>
 </ng-template>
